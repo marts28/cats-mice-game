@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Cats-mice-game</string>
+    <string name="game_title_on_start_screen">Игра Кошки-мышки</string>
+    <string name="set_game">Настроить параметры игры</string>
+</resources>
