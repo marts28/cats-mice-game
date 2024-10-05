@@ -68,7 +68,7 @@ class GameThread(
     }
 
     companion object {
-        val MAX_FPS = 30
+        const val MAX_FPS = 60
         var canvas: Canvas? = null
     }
 

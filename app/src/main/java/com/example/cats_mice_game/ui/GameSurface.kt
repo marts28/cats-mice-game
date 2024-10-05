@@ -16,7 +16,6 @@ class GameSurface(context: Context): SurfaceView(context), SurfaceHolder.Callbac
 
     private val thread: GameThread
     private val mouse:Mouse
-    private var mousePoint: Point? = null
 
     init {
         holder.addCallback(this)
@@ -24,7 +23,6 @@ class GameSurface(context: Context): SurfaceView(context), SurfaceHolder.Callbac
         isFocusable = true
 
         mouse = Mouse(Rect(100,100,200,200), Color.rgb(255,0,0))
-        mousePoint = Point(150,150)
     }
 
     override fun surfaceCreated(p0: SurfaceHolder) {
@@ -55,8 +53,9 @@ class GameSurface(context: Context): SurfaceView(context), SurfaceHolder.Callbac
 
         when (event!!.action){
             MotionEvent.ACTION_DOWN -> {
+
             }
-            MotionEvent.ACTION_MOVE ->  mousePoint!!.set(event.x.toInt(),event.y.toInt())
+            MotionEvent.ACTION_MOVE -> {}
         }
         return true
 
@@ -72,6 +71,8 @@ class GameSurface(context: Context): SurfaceView(context), SurfaceHolder.Callbac
     }
 
     fun update(){
-        mouse.update(mousePoint!!)
+        mouse.update()
     }
+
+
 }
