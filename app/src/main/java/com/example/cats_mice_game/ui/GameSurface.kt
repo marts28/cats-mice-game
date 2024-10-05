@@ -1,6 +1,8 @@
 package com.example.cats_mice_game.ui
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Point
@@ -10,6 +12,7 @@ import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.example.cats_mice_game.GameThread
+import com.example.cats_mice_game.R
 import com.example.cats_mice_game.domain.Mouse
 
 class GameSurface(context: Context): SurfaceView(context), SurfaceHolder.Callback {
@@ -21,8 +24,10 @@ class GameSurface(context: Context): SurfaceView(context), SurfaceHolder.Callbac
         holder.addCallback(this)
         thread = GameThread(holder, this)
         isFocusable = true
+        var bit = BitmapFactory.decodeResource(resources, R.drawable.mouse)
+        bit = Bitmap.createScaledBitmap(bit, 300, 150, false)
 
-        mouse = Mouse(Rect(100,100,200,200), Color.rgb(255,0,0))
+        mouse = Mouse(bit)
     }
 
     override fun surfaceCreated(p0: SurfaceHolder) {

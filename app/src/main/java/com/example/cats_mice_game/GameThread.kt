@@ -62,7 +62,6 @@ class GameThread(
                 averageFPS = (1000 / (totalTime / frameCount / 1000000)).toDouble()
                 frameCount = 0
                 totalTime = 0
-                println(averageFPS)
             }
         }
     }
