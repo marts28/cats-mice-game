@@ -16,7 +16,7 @@ class Mouse(private var bitmap: Bitmap, private val mouseVelocity: Float = 15f) 
     private var movingVectorY: Int = 0
     private var lastDrawNanoTime: Long = -1
 
-    var currentPoint = Point(0, 0)
+    private var currentPoint = Point(0, 0)
     private var destinationPoint = Point(0, 0)
 
     private var rotationAngle = 0f
@@ -32,8 +32,9 @@ class Mouse(private var bitmap: Bitmap, private val mouseVelocity: Float = 15f) 
         currentPoint.y = Random.nextInt(0, screenHeight - h)
 
         createNewPoint()
+        rotationAngle =
+            calculateRotationAngle((currentPoint.x - destinationPoint.x).toFloat(), (currentPoint.y - destinationPoint.y).toFloat())
     }
-
 
     private fun createNewPoint() {
         destinationPoint.x = Random.nextInt(0, screenWidth - w)
@@ -43,6 +44,9 @@ class Mouse(private var bitmap: Bitmap, private val mouseVelocity: Float = 15f) 
         movingVectorY = destinationPoint.y - currentPoint.y
     }
 
+    fun isMouseTouched(touchedPoint: Point) =
+        touchedPoint.x >= currentPoint.x && touchedPoint.x <= (currentPoint.x + w)
+                && touchedPoint.y >= currentPoint.y && touchedPoint.y <= (currentPoint.y + h)
 
     fun draw(canvas: Canvas) {
 
@@ -75,9 +79,8 @@ class Mouse(private var bitmap: Bitmap, private val mouseVelocity: Float = 15f) 
     }
 
     private fun calculateRotationAngle(deltaX: Float, deltaY: Float): Float {
-        return Math.toDegrees(atan2(deltaY.toDouble(), deltaX.toDouble())).toFloat()
+        return Math.toDegrees(atan2(deltaY.toDouble(), deltaX.toDouble())).toFloat()+180
     }
-
 
     fun update() {
 
@@ -87,10 +90,10 @@ class Mouse(private var bitmap: Bitmap, private val mouseVelocity: Float = 15f) 
         ) {
             currentPoint.x += pointChanges.x
             currentPoint.y += pointChanges.y
-            rotationAngle =
-                calculateRotationAngle(pointChanges.x.toFloat(), pointChanges.y.toFloat())
         } else {
             createNewPoint()
+            rotationAngle =
+                calculateRotationAngle((currentPoint.x - destinationPoint.x).toFloat(), (currentPoint.y - destinationPoint.y).toFloat())
         }
 
     }

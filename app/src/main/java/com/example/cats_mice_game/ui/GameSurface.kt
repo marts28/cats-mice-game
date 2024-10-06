@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Point
 import android.util.Log
 import android.view.MotionEvent
 import android.view.SurfaceHolder
@@ -27,7 +28,7 @@ class GameSurface(context: Context, gameSettings: GameSettings) : SurfaceView(co
         GameViewModelFactory(gameSettings, getMouseImage(), (context as Activity).application)
     }
 
-    private lateinit var viewModel:GameViewModel
+    private lateinit var viewModel: GameViewModel
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
@@ -63,6 +64,7 @@ class GameSurface(context: Context, gameSettings: GameSettings) : SurfaceView(co
         var retry = true
         while (retry) {
             try {
+                viewModel.insert()
                 thread.setRunning(false)
                 thread.join()
             } catch (e: Exception) {
@@ -70,13 +72,19 @@ class GameSurface(context: Context, gameSettings: GameSettings) : SurfaceView(co
             }
             retry = false
         }
+
     }
 
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         when (event!!.action) {
             MotionEvent.ACTION_DOWN -> {
-
+                viewModel.checkMouseTouch(
+                    Point(
+                        event.x.toInt(),
+                        event.y.toInt()
+                    )
+                )
             }
         }
         return true
