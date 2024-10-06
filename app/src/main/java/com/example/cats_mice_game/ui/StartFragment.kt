@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.cats_mice_game.R
 import com.example.cats_mice_game.databinding.FragmentStartBinding
+import com.example.cats_mice_game.domain.GameSettings
 
 class StartFragment: Fragment() {
 
@@ -29,11 +31,37 @@ class StartFragment: Fragment() {
         binding.buttonSetGame.setOnClickListener {
             launchGame()
         }
+        binding.sbNumberOfMice.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                binding.tvNumberOfMice.text = p1.toString()
+            }
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+
+        })
+
+        binding.sbMiceVelocity.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                binding.tvMiceVelocity.text = p1.toString()
+            }
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+
+        })
 
     }
 
     private fun launchGame(){
-        findNavController().navigate(R.id.action_startFragment_to_gameFragment)
+        findNavController().navigate(StartFragmentDirections.actionStartFragmentToGameFragment(
+            GameSettings(
+                binding.tvNumberOfMice.text.toString().toInt(),
+                binding.tvMiceVelocity.text.toString().toInt()
+            )
+        ))
     }
 
     override fun onDestroyView() {

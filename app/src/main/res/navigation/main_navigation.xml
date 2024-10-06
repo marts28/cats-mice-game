@@ -15,5 +15,9 @@
     <fragment
         android:id="@+id/gameFragment"
         android:name="com.example.cats_mice_game.ui.GameFragment"
-        android:label="GameFragment" />
+        android:label="GameFragment" >
+        <argument
+            android:name="gameSettings"
+            app:argType="com.example.cats_mice_game.domain.GameSettings" />
+    </fragment>
 </navigation>

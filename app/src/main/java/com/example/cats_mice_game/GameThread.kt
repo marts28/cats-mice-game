@@ -9,15 +9,16 @@ class GameThread(
     private val gameSurface: GameSurface
 ) : Thread() {
 
-    private var averageFPS: Double = 0.toDouble()
+    private var averageFPS: Double = 0.0
     private var isRunning = false
+    var canvas: Canvas? = null
     fun setRunning(isRunning: Boolean) {
         this.isRunning = isRunning
     }
 
     override fun run() {
         var startTime: Long
-        var timeMillis = (1000 / MAX_FPS).toLong()
+        var timeMillis: Long
         var waitTime: Long
         var totalTime: Long = 0
         var frameCount = 0
@@ -67,8 +68,7 @@ class GameThread(
     }
 
     companion object {
-        const val MAX_FPS = 60
-        var canvas: Canvas? = null
+        private const val MAX_FPS = 60
     }
 
 }
