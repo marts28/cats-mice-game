@@ -2,6 +2,8 @@ package com.example.cats_mice_game.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Window
+import android.view.WindowManager
 import com.example.cats_mice_game.R
 
 class MainActivity : AppCompatActivity() {

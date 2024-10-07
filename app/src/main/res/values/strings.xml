@@ -1,9 +1,15 @@
 <resources>
     <string name="app_name">Cats-mice-game</string>
     <string name="game_title_on_start_screen">Игра Кошки-мышки</string>
-    <string name="set_game">Настроить параметры игры</string>
+    <string name="start_game">Начать игру</string>
     <string name="mice_in_game">Количество мышей в игре:</string>
     <string name="mice_velocity_in_game">Скорость мышей в игре:</string>
     <string name="_1">1</string>
     <string name="_10">10</string>
+    <string name="game_stats">Статистика</string>
+    <string name="game_time">Время игры:</string>
+    <string name="total_clicks">Всего нажатий:</string>
+    <string name="correct_clicks">Попаданий:</string>
+    <string name="percent_clicks">Процент попаданий:</string>
+    <string name="percent_sym">%</string>
 </resources>

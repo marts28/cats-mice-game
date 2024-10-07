@@ -28,8 +28,11 @@ class StartFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.buttonSetGame.setOnClickListener {
+        binding.buttonStartGame.setOnClickListener {
             launchGame()
+        }
+        binding.buttonLookGameStats.setOnClickListener {
+            launchStatsScreen()
         }
         binding.sbNumberOfMice.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
@@ -53,6 +56,10 @@ class StartFragment: Fragment() {
 
         })
 
+    }
+
+    private fun launchStatsScreen() {
+        findNavController().navigate(R.id.action_startFragment_to_statsFragment)
     }
 
     private fun launchGame(){
