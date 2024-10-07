@@ -12,4 +12,5 @@
     <string name="correct_clicks">Попаданий:</string>
     <string name="percent_clicks">Процент попаданий:</string>
     <string name="percent_sym">%</string>
+    <string name="mouse_image">Mouse image</string>
 </resources>

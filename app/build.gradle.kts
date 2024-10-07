@@ -61,4 +61,7 @@ dependencies {
     //viewmodel
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
+
+    implementation("androidx.core:core-splashscreen:1.0.1")
+
 }
