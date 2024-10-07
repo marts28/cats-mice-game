@@ -7,10 +7,10 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:src="@drawable/mouse"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_margin="16dp"
+        android:src="@drawable/mouse"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -53,8 +53,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:min="1"
         android:max="5"
+        android:min="1"
         android:progress="0"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -82,11 +82,11 @@
     <androidx.appcompat.widget.AppCompatSeekBar
         android:id="@+id/sb_mice_velocity"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:min="10"
-        android:max="30"
-        android:progress="0"
+        android:layout_height="0dp"
         android:layout_margin="16dp"
+        android:max="30"
+        android:min="10"
+        android:progress="0"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <Button
@@ -95,15 +95,17 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:text="@string/start_game"
-        app:layout_constraintBottom_toTopOf="@id/button_look_game_stats"
-        />
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/sb_mice_velocity"/>
+
     <Button
         android:id="@+id/button_look_game_stats"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:layout_margin="16dp"
         android:text="@string/game_stats"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/button_start_game"
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
