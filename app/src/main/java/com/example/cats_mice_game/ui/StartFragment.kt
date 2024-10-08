@@ -28,34 +28,47 @@ class StartFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.buttonStartGame.setOnClickListener {
-            launchGame()
-        }
-        binding.buttonLookGameStats.setOnClickListener {
-            launchStatsScreen()
-        }
-        binding.sbNumberOfMice.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+        setButtonsClickListeners()
+        setSeekBarsChangeListeners()
+    }
+
+    private fun setSeekBarsChangeListeners() {
+        binding.sbNumberOfMice.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 binding.tvNumberOfMice.text = p1.toString()
             }
+
             override fun onStartTrackingTouch(p0: SeekBar?) {
             }
+
             override fun onStopTrackingTouch(p0: SeekBar?) {
             }
 
         })
 
-        binding.sbMiceVelocity.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+        binding.sbMiceVelocity.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 binding.tvMiceVelocity.text = p1.toString()
             }
+
             override fun onStartTrackingTouch(p0: SeekBar?) {
             }
+
             override fun onStopTrackingTouch(p0: SeekBar?) {
             }
 
         })
+    }
 
+    private fun setButtonsClickListeners() {
+        with(binding) {
+            buttonStartGame.setOnClickListener {
+                launchGame()
+            }
+            buttonLookGameStats.setOnClickListener {
+                launchStatsScreen()
+            }
+        }
     }
 
     private fun launchStatsScreen() {

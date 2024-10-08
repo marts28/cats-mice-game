@@ -1,9 +1,6 @@
 package com.example.cats_mice_game.ui
 
-import android.app.Activity
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Point
@@ -11,13 +8,8 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import com.example.cats_mice_game.GameThread
-import com.example.cats_mice_game.R
-import com.example.cats_mice_game.domain.GameSettings
 import com.example.cats_mice_game.presentation.GameViewModel
-import com.example.cats_mice_game.presentation.GameViewModelFactory
 
 class GameSurface(context: Context, private val viewModel: GameViewModel) : SurfaceView(context),
     SurfaceHolder.Callback {
@@ -28,10 +20,7 @@ class GameSurface(context: Context, private val viewModel: GameViewModel) : Surf
         holder.addCallback(this)
         thread = GameThread(holder, this)
         isFocusable = true
-        Log.d("Test", "Surface init")
     }
-
-
 
     override fun surfaceCreated(p0: SurfaceHolder) {
         if (thread == null){
@@ -39,7 +28,6 @@ class GameSurface(context: Context, private val viewModel: GameViewModel) : Surf
             thread = GameThread(holder, this)
             isFocusable = true
         }
-        Log.d("Test", "Surface created")
     }
 
     override fun surfaceChanged(p0: SurfaceHolder, p1: Int, p2: Int, p3: Int) {
@@ -58,10 +46,8 @@ class GameSurface(context: Context, private val viewModel: GameViewModel) : Surf
             }
             retry = false
         }
-        Log.d("Test","surface destroyed" )
         thread = null
     }
-
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         when (event!!.action) {
@@ -75,23 +61,17 @@ class GameSurface(context: Context, private val viewModel: GameViewModel) : Surf
             }
         }
         return true
-
-//        return super.onTouchEvent(event)
     }
-
 
     override fun draw(canvas: Canvas) {
         super.draw(canvas)
-
-        canvas!!.drawColor(Color.WHITE)
+        canvas.drawColor(Color.WHITE)
         viewModel.draw(canvas)
 
     }
 
     fun update() {
-
         viewModel.update()
     }
-
 
 }

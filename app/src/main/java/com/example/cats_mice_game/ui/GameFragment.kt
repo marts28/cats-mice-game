@@ -1,11 +1,9 @@
 package com.example.cats_mice_game.ui
 
 import android.app.Activity
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,8 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.cats_mice_game.R
-import com.example.cats_mice_game.databinding.FragmentGameBinding
-import com.example.cats_mice_game.databinding.FragmentStartBinding
 import com.example.cats_mice_game.presentation.GameViewModel
 import com.example.cats_mice_game.presentation.GameViewModelFactory
 
@@ -33,11 +29,6 @@ class GameFragment : Fragment() {
     }
     private lateinit var gameSurface: GameSurface
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -53,7 +44,6 @@ class GameFragment : Fragment() {
     }
 
     private fun setOnBackPressCallbackWithSavingGameData(){
-
         val onBackPressedCallback = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
                 viewModel.insert()
@@ -62,17 +52,12 @@ class GameFragment : Fragment() {
 
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
-
     }
 
-    fun getMouseImage() = Bitmap.createScaledBitmap(
+    private fun getMouseImage() = Bitmap.createScaledBitmap(
         BitmapFactory.decodeResource(resources, R.drawable.mouse),
         300,
         150,
         false
     )
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
 }

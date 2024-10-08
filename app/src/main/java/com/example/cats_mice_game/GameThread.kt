@@ -11,7 +11,7 @@ class GameThread(
 
     private var averageFPS: Double = 0.0
     private var isRunning = false
-    var canvas: Canvas? = null
+    private var canvas: Canvas? = null
     fun setRunning(isRunning: Boolean) {
         this.isRunning = isRunning
     }

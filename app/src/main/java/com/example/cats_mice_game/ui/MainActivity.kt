@@ -1,9 +1,7 @@
 package com.example.cats_mice_game.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Window
-import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
