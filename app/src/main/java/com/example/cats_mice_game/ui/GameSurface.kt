@@ -19,60 +19,47 @@ import com.example.cats_mice_game.domain.GameSettings
 import com.example.cats_mice_game.presentation.GameViewModel
 import com.example.cats_mice_game.presentation.GameViewModelFactory
 
-class GameSurface(context: Context, gameSettings: GameSettings) : SurfaceView(context),
+class GameSurface(context: Context, private val viewModel: GameViewModel) : SurfaceView(context),
     SurfaceHolder.Callback {
 
-    private val thread: GameThread
-
-    private val viewModelFactory by lazy {
-        GameViewModelFactory(gameSettings, getMouseImage(), (context as Activity).application)
-    }
-
-    private lateinit var viewModel: GameViewModel
-
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-        viewModel = ViewModelProvider(
-            findViewTreeViewModelStoreOwner()!!,
-            viewModelFactory
-        )[GameViewModel::class.java]
-    }
+    private var thread: GameThread? = null
 
     init {
         holder.addCallback(this)
         thread = GameThread(holder, this)
         isFocusable = true
-
+        Log.d("Test", "Surface init")
     }
 
-    fun getMouseImage() = Bitmap.createScaledBitmap(
-        BitmapFactory.decodeResource(resources, R.drawable.mouse),
-        300,
-        150,
-        false
-    )
+
 
     override fun surfaceCreated(p0: SurfaceHolder) {
+        if (thread == null){
+            holder.addCallback(this)
+            thread = GameThread(holder, this)
+            isFocusable = true
+        }
+        Log.d("Test", "Surface created")
     }
 
     override fun surfaceChanged(p0: SurfaceHolder, p1: Int, p2: Int, p3: Int) {
-        thread.setRunning(true)
-        thread.start()
+        thread?.setRunning(true)
+        thread?.start()
     }
 
     override fun surfaceDestroyed(p0: SurfaceHolder) {
         var retry = true
         while (retry) {
             try {
-                viewModel.insert()
-                thread.setRunning(false)
-                thread.join()
+                thread?.setRunning(false)
+                thread?.join()
             } catch (e: Exception) {
-                Log.d("Exception", e.toString())
+                Log.d("Test", e.toString())
             }
             retry = false
         }
-
+        Log.d("Test","surface destroyed" )
+        thread = null
     }
 
 

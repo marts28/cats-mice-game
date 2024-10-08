@@ -22,6 +22,9 @@
         <argument
             android:name="gameSettings"
             app:argType="com.example.cats_mice_game.domain.GameSettings" />
+        <action
+            android:id="@+id/action_gameFragment_to_startFragment"
+            app:destination="@id/startFragment" />
     </fragment>
     <fragment
         android:id="@+id/statsFragment"
